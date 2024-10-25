@@ -1,0 +1,17 @@
+{
+  "name": "s3-bucket-testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "teste.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.1691.0",
+    "csv-parser": "^3.0.0",
+    "dotenv": "^16.4.5"
+  }
+}
