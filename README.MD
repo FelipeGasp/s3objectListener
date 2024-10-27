@@ -1,7 +1,63 @@
-Este projeto visa conectar uma automação leve com bucket s3 utilizando javascript para posterior interação com web-data-viz, siga os passos a seguir para criar conexão:
-1 - Clone o projeto
-2 - Crie as variaveis de ambiente para conexão num arquivo .env, se você não sabe configurar, pesquise por dotenv doc no google
-2.1 - Você precisa colocar todos os tokens de acesso da AWS, no .env, eles estão no terminal da lab, use cat .aws/credentials
-3 - Entre no repositorio que clonou e dê npm i(npm install) e node teste.js(este comando substitui npm start).
 
-P.s: Se der erro, troque o nome dos parametros nas funções para o bucket/arquivo solicitado.
+# Projeto de Automação com AWS S3 e JavaScript
+
+Este projeto tem como objetivo conectar uma automação leve a um bucket S3 utilizando JavaScript, para posterior interação com **Web Data Visualization**.
+
+## Passos para configurar o projeto
+
+### 1. Clonar o repositório
+
+Comece clonando o repositório para a sua máquina local. No terminal, execute:
+
+```bash
+git clone <URL-do-repositorio>
+```
+
+Substitua `<URL-do-repositorio>` pela URL do repositório que você deseja clonar.
+
+### 2. Configurar variáveis de ambiente
+
+Após clonar o repositório, você precisa configurar as variáveis de ambiente para se conectar ao S3 da AWS.
+
+1. Crie um arquivo `.env` na raiz do projeto.
+2. No terminal, utilize o comando abaixo para visualizar suas credenciais da AWS:
+   ```bash
+   cat ~/.aws/credentials
+   ```
+3. Copie as informações exibidas e cole no seu arquivo `.env` da seguinte forma:
+
+```plaintext
+AWS_ACCESS_KEY_ID=seuAccessKeyId
+AWS_SECRET_ACCESS_KEY=seuSecretAccessKey
+AWS_REGION=suaRegiao
+```
+
+Se você não sabe como configurar o `.env`, consulte a [documentação do dotenv](https://www.npmjs.com/package/dotenv).
+
+### 3. Instalar dependências
+
+Navegue até o diretório do projeto e execute o comando abaixo para instalar as dependências necessárias:
+
+```bash
+npm install
+```
+
+### 4. Executar o projeto
+
+Depois de instalar as dependências, você pode rodar o projeto usando o seguinte comando:
+
+```bash
+node teste.js
+```
+
+Esse comando substituirá o tradicional `npm start`.
+
+### Dica: Tratando erros
+
+Se você encontrar algum erro relacionado aos parâmetros do bucket ou do arquivo, verifique o nome dos parâmetros que está passando para as funções. Certifique-se de que o nome do bucket e do arquivo estejam corretos.
+
+Caso tenha algum erro de conexão, ajuste o nome dos parâmetros ou o conteúdo do arquivo `.env` para refletir as configurações corretas de sua AWS.
+
+---
+
+Agora você está pronto para conectar à AWS S3 e começar a interagir com seus dados via JavaScript de forma eficiente!
