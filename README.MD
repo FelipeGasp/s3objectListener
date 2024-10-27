@@ -27,12 +27,15 @@ Após clonar o repositório, você precisa configurar as variáveis de ambiente 
 3. Copie as informações exibidas e cole no seu arquivo `.env` da seguinte forma:
 
 ```plaintext
-AWS_ACCESS_KEY_ID=seuAccessKeyId
-AWS_SECRET_ACCESS_KEY=seuSecretAccessKey
-AWS_REGION=suaRegiao
+AWS_ACCESS_KEY_ID="seuAccessKeyId"
+AWS_SECRET_ACCESS_KEY="seuSecretAccessKey"
+AWS_SESSION_TOKEN="tokenDeAcesso"
 ```
 
 Se você não sabe como configurar o `.env`, consulte a [documentação do dotenv](https://www.npmjs.com/package/dotenv).
+
+Configure também dentro do arquivo a região de sua AWS:
+AWS.config.update({ region: 'regiaoInformadoNoConsole' });
 
 ### 3. Instalar dependências
 
