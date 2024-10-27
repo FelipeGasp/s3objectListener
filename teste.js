@@ -17,9 +17,9 @@ const s3 = new AWS.S3();
 // const nomeBucket = 'tagtech-client'; Use esta linha caso queira "chumbar" o bucket usado, use processCSV caso queira dinamico
 
 //Função para async para listar objetos usando função .listObjectsV2
-const listObjects = async () =>{
+const listObjects = async (nomeBucket) =>{
   try{
-    const data = await s3.listObjectsV2({Bucket:nomeBucket}).promise();
+    const data = await s3.listObjectsV2({nomeBucket}).promise();
     console.log('Objects in S3 bucket:');
     data.Contents.forEach((obj) => {
       console.log(obj.Key)
@@ -56,6 +56,34 @@ const readFileCsv = async (fileName, nomeBucket) =>{
 });
   };
 
+  const readFileJson = async (fileName, nomeBucket) =>{
+    const params = {
+      Bucket: nomeBucket, // Aqui é o nome do bucket ou a variavel
+      Key: fileName, // Aqui é o nome do arquivo
+  };
+    try{
+      const data = await s3.getObject(params).promise();
+      const dataJson = JSON.parse(data.Body.toString('utf-8'));
+      return dataJson;
+      }
+      catch(err){
+        console.error(`Error reading JSON: ${err}`);
+      }
+    }
+
+// FUNÇÕES ACIMA DE BUSCA
+// FUNÇÕES ABAIXO DE CHAMADA
+  const callObjectsListing = async () =>{
+    try{
+      const nomeBucket = '';
+      await listObjects(nomeBucket)/* Aqui dentro você passa o nome listado acima */
+    }
+    catch(err){
+      console.error('Error listening objects: ', err)
+    }
+  }
+
+
   const processCSV = async () => {
     try {
         const nomeBucket = 'tagtech-client';
@@ -63,17 +91,36 @@ const readFileCsv = async (fileName, nomeBucket) =>{
         var csvData = await readFileCsv(fileName,nomeBucket/*Aqui dentro você passa o argumento do nome do arquivo, se você quiser deixar o código dinâmico, exemplo de uso listado */);
         console.log('Parsed CSV Data:', csvData);
         // Agora você tem o arquivo pronto para uso externo
-    } catch (error) {
-        console.error('Error processing CSV:', error);
+    } catch (err) {
+        console.error('Error processing CSV:', err);
     }
 };
+const processJson = async () => {
+  try {
+      const nomeBucket = 'tagtech-client';
+      const fileName = 'relatorioSemanal.json'
+      var jsonData = await readFileJson(fileName,nomeBucket/*Aqui dentro você passa o argumento do nome do arquivo, se você quiser deixar o código dinâmico, exemplo de uso listado */);
+      console.log('Parsed Json Data:', jsonDataData);
+      // Agora você tem o arquivo pronto para uso externo
+  } catch (err) {
+      console.error('Error processing Json:', err);
+  }
+};
+
+
+
 //chamando as functions e views
 
 // listObjects();
+callObjectsListing();
 processCSV();
 // readFileCsv();
+
 // Comente qual você não quer se necessário.
 ///////////////////////////////////////////////
 ///SEMPRE DEIXA READ FILE DEPOIS DO PROCESS////
-///////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////NUNCA CHAME processCSV e readFileCsv ao mesmo tempo, elas chamam uma a outra////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+// DESENVOLVIDO POR : Felipe Gasparotto /////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
