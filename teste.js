@@ -10,19 +10,22 @@ AWS.config.update({
 
 
 // Configurando a região da AWS usando .config
-AWS.config.update({ region: 'us-east-1' });
+AWS.config.update({ region: '' });
 
 //Criando um objeto do bucket
 const s3 = new AWS.S3();
-// const nomeBucket = 'tagtech-client'; Use esta linha caso queira "chumbar" o bucket usado, use processCSV caso queira dinamico
 
 //Função para async para listar objetos usando função .listObjectsV2
 const listObjects = async (nomeBucket) =>{
-  try{
-    const data = await s3.listObjectsV2({nomeBucket}).promise();
+  try {
+    const params = {
+      Bucket: nomeBucket  // Certifique-se de passar o bucket como uma chave no objeto params
+    };
+    
+    const data = await s3.listObjectsV2(params).promise();
     console.log('Objects in S3 bucket:');
     data.Contents.forEach((obj) => {
-      console.log(obj.Key)
+      console.log(obj.Key);
     });
   } catch(err){
     console.error('Error acessing buckets:',err)
@@ -74,6 +77,7 @@ const readFileCsv = async (fileName, nomeBucket) =>{
 // FUNÇÕES ACIMA DE BUSCA
 // FUNÇÕES ABAIXO DE CHAMADA
   const callObjectsListing = async () =>{
+    console.log('/////////////////////Chamando função listar objetos////////////////////////////')
     try{
       const nomeBucket = '';
       await listObjects(nomeBucket)/* Aqui dentro você passa o nome listado acima */
@@ -85,9 +89,10 @@ const readFileCsv = async (fileName, nomeBucket) =>{
 
 
   const processCSV = async () => {
+    console.log('/////////////////////Chamando função processar arquivos CSV////////////////////////////')
     try {
-        const nomeBucket = 'tagtech-client';
-        const fileName = 'relatorioSemanal.csv'
+        const nomeBucket = '';
+        const fileName = '.csv'
         var csvData = await readFileCsv(fileName,nomeBucket/*Aqui dentro você passa o argumento do nome do arquivo, se você quiser deixar o código dinâmico, exemplo de uso listado */);
         console.log('Parsed CSV Data:', csvData);
         // Agora você tem o arquivo pronto para uso externo
@@ -96,9 +101,10 @@ const readFileCsv = async (fileName, nomeBucket) =>{
     }
 };
 const processJson = async () => {
+  console.log('/////////////////////Chamando função processar arquivos JSON////////////////////////////')
   try {
-      const nomeBucket = 'tagtech-client';
-      const fileName = 'relatorioSemanal.json'
+      const nomeBucket = '';
+      const fileName = '.json'
       var jsonData = await readFileJson(fileName,nomeBucket/*Aqui dentro você passa o argumento do nome do arquivo, se você quiser deixar o código dinâmico, exemplo de uso listado */);
       console.log('Parsed Json Data:', jsonDataData);
       // Agora você tem o arquivo pronto para uso externo
