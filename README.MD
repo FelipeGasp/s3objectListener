@@ -13,7 +13,7 @@ Comece clonando o repositório para a sua máquina local. No terminal, execute:
 git clone <URL-do-repositorio>
 ```
 
-Substitua `<URL-do-repositorio>` pela URL do repositório que você deseja clonar.
+Substitua `<URL-do-repositorio>` pela seguinte URL: `https://github.com/FelipeGasp/s3objectListener.git`
 
 ### 2. Configurar variáveis de ambiente
 
