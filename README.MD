@@ -35,8 +35,9 @@ AWS_SESSION_TOKEN="tokenDeAcesso"
 Se você não sabe como configurar o `.env`, consulte a [documentação do dotenv](https://www.npmjs.com/package/dotenv).
 
 Configure também dentro do arquivo a região de sua AWS:
+```plaintext
 AWS.config.update({ region: 'regiaoInformadoNoConsole' });
-
+```
 ### 3. Instalar dependências
 
 Navegue até o diretório do projeto e execute o comando abaixo para instalar as dependências necessárias:
