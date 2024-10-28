@@ -64,4 +64,47 @@ Caso tenha algum erro de conexão, ajuste o nome dos parâmetros ou o conteúdo 
 
 ---
 
+# Integração com web-data-viz
+
+### 1. Clone os dois projetos:
+
+```bash
+git clone <URL> && git clone <URL()>
+```
+
+### 2. Mova codigo teste.js para a pasta routes do web-data-viz:
+
+Isto ira importar o teste.js para o backend do web-data-viz
+
+### 3. Configure APP.JS
+ Cole estes dois no app.js:
+```bash
+var AWS = require('aws-sdk');
+var csv = require('csv-parser');
+```
+ Crie a rota debaixo das outras(não precisa estar com o mesmo nome que o meu):
+```bash
+var getS3Objects = require('./src/routes/objectLister.js')
+```
+### 4. Configurando teste.js
+Lembre-se de no final do código feito no passo 2, colocar module.exports = (functions que desejar consumir)
+```bash
+module.exports = callObjectsListing;
+module.exports = processCSV;
+```
+### 5. Crie o consumo
+Para finalizar, deixe o wdv aberto para ser consumido com o seguinte código:
+
+```bash
+app.get("/viewS3", async(req, res) =>{
+    try {
+        const resultado = await getS3Objects();
+        res.json( {resultado});
+    } catch (error) {
+        res.status(500).json({error: 'Erro interno do servidor'})
+    }
+ })
+```
+
+
 Agora você está pronto para conectar à AWS S3 e começar a interagir com seus dados via JavaScript de forma eficiente!
