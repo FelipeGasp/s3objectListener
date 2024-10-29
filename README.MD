@@ -69,7 +69,7 @@ Caso tenha algum erro de conexão, ajuste o nome dos parâmetros ou o conteúdo 
 ### 1. Clone os dois projetos:
 
 ```bash
-git clone <URL> && git clone <URL()>
+git clone <URLs3ObjectListener> && git clone <URLdoProjeto>
 ```
 
 ### 2. Mova codigo teste.js para a pasta routes do web-data-viz:
